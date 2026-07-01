@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Lexend:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Colors matched directly to the corporate logo */
+  --color-brand-primary: #124773;      /* Boran Navy Blue */
+  --color-brand-accent: #0ea5e9;       /* Water Droplet Blue */
+  --color-brand-accent-hover: #38bdf8;
+  
+  --color-substrate-light: #f8fafc;    /* Clean off-white */
+  --color-substrate-card: #ffffff;     /* Pure white */
+  --color-carbon-text: #0f172a;        /* Deep slate text */
+  --color-border-line: #e2e8f0;        /* Soft gray borders */
+  
+  --font-sans: 'Lexend', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --font-display: 'Barlow Condensed', system-ui, -apple-system, sans-serif;
+  --font-logo: 'Barlow Condensed', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom Base Styles */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-substrate-light);
+  color: var(--color-carbon-text);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+}
+
+h1 {
+  font-family: var(--font-logo);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.0;
+}
+
+/* Custom Scrollbar - Matched to Logo Blue */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-substrate-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-primary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-accent);
+}
+
+/* Warning stripe background pattern - Logo-matched blue & accent */
+.warning-stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-brand-primary),
+    var(--color-brand-primary) 10px,
+    #0c3354 10px,
+    #0c3354 20px
+  );
+}
+
+.warning-stripes-accent {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-brand-accent),
+    var(--color-brand-accent) 10px,
+    var(--color-brand-primary) 10px,
+    var(--color-brand-primary) 20px
+  );
+}
+
+.tech-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
