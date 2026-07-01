@@ -156,7 +156,7 @@ export class App {
   }
 
   // Web3Forms Access Key: Replace with your actual key from https://web3forms.com
-  private readonly web3formsAccessKey = 'YOUR_ACCESS_KEY_HERE';
+  private readonly web3formsAccessKey: string = '68c614e2-97a3-4964-9b46-b95cb9ec16e6';
 
   // Handle booking form submission
   protected onSubmitBooking(event: Event): void {
