@@ -1,605 +1,116 @@
-<!-- Emergency Announcement Banner (Top) -->
-<div *ngIf="isEmergencyBannerVisible()" 
-     class="relative bg-brand-primary text-white px-4 py-3 text-xs md:text-sm font-sans font-medium flex items-center justify-between border-b border-brand-primary/20 z-50">
-  <div class="flex items-center gap-2 mx-auto">
-    <!-- Active mechanical status indicator -->
-    <span class="relative flex h-2 w-2" aria-hidden="true">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
-    </span>
-    <span>Steam Boiler Specialists &bull; Free Estimates &bull;</span>
-    <a href="tel:7812690150" class="underline hover:text-brand-accent transition-colors font-bold ml-1">Call (781) 269-0150</a>
-  </div>
-  <button (click)="dismissEmergencyBanner()"
-          type="button"
-          class="inline-flex items-center justify-center text-white hover:text-brand-accent transition-colors font-sans font-bold min-h-[44px] px-3 border border-white/20 hover:border-brand-accent rounded text-xs"
-          aria-label="Dismiss alert">
-    Dismiss
-  </button>
-</div>
-
-<!-- Header Navigation -->
-<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 w-full">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between relative">
-    
-    <!-- Hanging Brand Logo Image (Stands Out Prominently) -->
-    <a href="/" aria-label="Boran Plumbing Heating & Gas — home" class="absolute top-0 left-4 md:left-8 bg-white border-2 border-brand-primary border-t-0 px-4 pb-4 pt-2 shadow-lg z-50 rounded-b-2xl flex items-center transition-all hover:scale-[1.02]">
-      <img src="logo.jpg" alt="Boran Plumbing Heating & Gas Logo" width="1024" height="768" decoding="async" class="h-20 md:h-24 w-auto object-contain rounded-lg" />
-    </a>
-
-    <!-- Spacer to push menu items to the right past the hanging logo -->
-    <div class="w-40 md:w-56 lg:w-64 h-px flex-shrink-0"></div>
-
-    <!-- Desktop Navigation Links -->
-    <nav class="hidden lg:flex items-center gap-8 font-sans text-sm font-semibold text-brand-primary">
-      <a href="#about" class="hover:text-brand-accent transition-colors">About</a>
-      <a href="#services" class="hover:text-brand-accent transition-colors">Services</a>
-      <a href="#coverage" class="hover:text-brand-accent transition-colors">Why Us</a>
-      <span class="text-slate-300" aria-hidden="true">|</span>
-      <a href="tel:7812690150" class="text-brand-primary hover:text-brand-accent-text hover:underline transition-colors flex items-center gap-1.5 font-bold">
-        (781) 269-0150
-      </a>
-    </nav>
-
-    <!-- Mobile Navigation Trigger -->
-    <button (click)="toggleMobileMenu()"
-            type="button"
-            class="lg:hidden inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 text-brand-primary hover:text-brand-accent transition-colors font-sans font-bold"
-            aria-label="Toggle menu"
-            aria-controls="mobile-menu"
-            [attr.aria-expanded]="isMobileMenuOpen()">
-      <span *ngIf="!isMobileMenuOpen()">Menu</span>
-      <span *ngIf="isMobileMenuOpen()">Close</span>
-    </button>
-  </div>
-
-  <!-- Mobile Dropdown Menu -->
-  <div *ngIf="isMobileMenuOpen()"
-       id="mobile-menu"
-       class="lg:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-2 z-30 relative shadow-md animate-mobile-menu">
-    <a href="#about" (click)="closeMobileMenu()" class="block px-3 py-2 font-sans text-sm font-semibold text-brand-primary hover:bg-brand-primary hover:text-white rounded-lg transition-all">About</a>
-    <a href="#services" (click)="closeMobileMenu()" class="block px-3 py-2 font-sans text-sm font-semibold text-brand-primary hover:bg-brand-primary hover:text-white rounded-lg transition-all">Services</a>
-    <a href="#coverage" (click)="closeMobileMenu()" class="block px-3 py-2 font-sans text-sm font-semibold text-brand-primary hover:bg-brand-primary hover:text-white rounded-lg transition-all">Why Us</a>
-    <div class="pt-4 border-t border-slate-200 flex flex-col gap-2">
-      <a href="tel:7812690150" class="inline-flex items-center justify-center w-full px-4 py-3 font-sans font-bold text-brand-primary border border-brand-accent/20 bg-brand-accent/5 hover:bg-brand-accent/10 rounded-lg transition-all">
-        Call (781) 269-0150
-      </a>
-    </div>
+<!-- Header / hero -->
+<header>
+  <img class="logo" src="logo.jpg" alt="Boran Plumbing Heating & Gas logo" width="1024" height="768" />
+  <h1>Reliable Plumbing, Heating &amp; Gas Services Done Right</h1>
+  <p class="subtitle">Licensed and insured plumbing, heating, and gas services based in Hopedale, MA.</p>
+  <div class="cta-row">
+    <a class="btn" href="tel:7812690150">Call 781-269-0150</a>
+    <a class="btn secondary" href="#contact">Free Estimate</a>
   </div>
 </header>
 
-<main class="w-full">
-  <!-- Hero Section -->
-  <section class="relative min-h-[75dvh] flex items-center justify-center py-16 md:py-24 bg-brand-primary text-white overflow-hidden">
-    <!-- Background grid decoration -->
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-0"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-      <!-- Hero Copy -->
-      <div class="lg:col-span-6 space-y-6 flex flex-col justify-center text-left">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-brand-accent text-xs font-sans font-bold tracking-wider w-fit border border-white/5">
-          Boran Plumbing Heating & Gas
-        </div>
-        
-        <h1 class="text-5xl md:text-6xl lg:text-[5.25rem] tracking-tighter leading-[0.95] text-white uppercase text-balance">
-          Reliable Plumbing, <br/>
-          Heating & Gas Services <br/>
-          <span class="text-brand-accent">Done Right</span>
-        </h1>
-        
-        <p class="text-sm md:text-base text-slate-200 leading-relaxed max-w-[48ch]">
-          Licensed and insured plumbing, heating, and gas services based in Hopedale, MA.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-4 pt-2">
-          <a href="#booking" class="inline-flex items-center justify-center px-6 py-4 font-sans font-bold bg-white text-brand-primary border-2 border-white hover:bg-brand-accent hover:text-brand-primary hover:border-brand-accent transition-all active:scale-[0.98] rounded-xl w-full sm:w-auto shadow-lg">
-            Request Estimate
-          </a>
-          <a href="tel:7812690150" class="inline-flex items-center justify-center px-6 py-4 font-sans font-bold border-2 border-white/20 text-white hover:bg-white/10 transition-all active:scale-[0.98] rounded-xl w-full sm:w-auto">
-            Call (781) 269-0150
-          </a>
-        </div>
-      </div>
-      
-      <!-- Hero Visual Asset (Technical Blueprint Schematic) -->
-      <div class="lg:col-span-6 space-y-2">
-        <div class="relative w-full h-[350px] md:h-[450px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-brand-primary flex items-center justify-center p-6">
-          <!-- Blueprint gradient background -->
-          <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-primary via-slate-900 to-slate-950 z-0"></div>
-          
-          <svg class="relative z-10 w-full h-full text-white/5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false">
-            <!-- Grid pattern -->
-            <defs>
-              <pattern id="blueprint-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="0.75" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#blueprint-grid)" />
-            
-            <!-- System piping diagram -->
-            <!-- Verticals -->
-            <path d="M 80 40 L 80 340" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" class="opacity-80" />
-            <path d="M 320 60 L 320 340" stroke="white" stroke-width="2" stroke-opacity="0.25" stroke-linecap="round" />
-            
-            <!-- Loops -->
-            <path d="M 80 100 L 320 100" stroke="#0ea5e9" stroke-width="2" class="opacity-70" />
-            <path d="M 80 220 L 320 220" stroke="white" stroke-width="2" stroke-opacity="0.3" />
-            
-            <!-- Branch runs -->
-            <path d="M 160 100 L 160 220" stroke="white" stroke-width="1.5" stroke-opacity="0.2" />
-            <path d="M 240 100 L 240 220" stroke="white" stroke-width="1.5" stroke-opacity="0.2" />
-            
-            <!-- Boiler / Heat Exchanger Node Schematic -->
-            <rect x="140" y="260" width="120" height="60" rx="6" fill="#124773" stroke="white" stroke-width="2" stroke-opacity="0.4" />
-            <path d="M 170 280 L 230 280 M 170 300 L 230 300" stroke="#0ea5e9" stroke-width="1.5" stroke-linecap="round" class="opacity-55" />
-            <text x="200" y="293" text-anchor="middle" font-family="var(--font-display)" font-size="9" fill="white" font-weight="900" class="opacity-80 tracking-wider">STEAM CONDENSER</text>
-            
-            <!-- Valves -->
-            <!-- Valve 1 -->
-            <path d="M 72 150 L 88 150 L 72 170 L 88 170 Z" fill="#0ea5e9" stroke="#0ea5e9" stroke-width="1.5" class="opacity-80" />
-            <circle cx="80" cy="160" r="2.5" fill="white" />
-            
-            <!-- Valve 2 -->
-            <path d="M 312 150 L 328 150 L 312 170 L 328 170 Z" fill="white" stroke="white" stroke-width="1.5" stroke-opacity="0.4" />
-            <circle cx="320" cy="160" r="2.5" fill="#124773" />
-            
-            <!-- Gauges -->
-            <circle cx="200" cy="100" r="18" fill="#124773" stroke="#0ea5e9" stroke-width="2" />
-            <path d="M 200 100 L 210 90" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" />
-            <circle cx="200" cy="100" r="2" fill="white" />
-            <text x="200" y="113" text-anchor="middle" font-family="monospace" font-size="6" fill="white" class="opacity-60">BAR</text>
-            
-            <!-- Pulsing flow indicators -->
-            <circle cx="80" cy="280" r="4.5" fill="#0ea5e9">
-              <animate attributeName="r" values="3.5;6.5;3.5" dur="3s" repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite" />
-            </circle>
-            
-            <circle cx="200" cy="220" r="4.5" fill="#0ea5e9">
-              <animate attributeName="r" values="3.5;6.5;3.5" dur="2.4s" repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0.5;1;0.5" dur="2.4s" repeatCount="indefinite" />
-            </circle>
-            
-            <!-- Annotations -->
-            <text x="95" y="60" font-family="monospace" font-size="9" fill="#0ea5e9" font-weight="bold" letter-spacing="0.1em">RISER-01 [ACTIVE]</text>
-            <text x="95" y="240" font-family="monospace" font-size="8" fill="white" class="opacity-40">RET-LINE &bull; 1.25" COPPER PIPING</text>
-            <text x="225" y="115" font-family="monospace" font-size="8" fill="white" class="opacity-40">FLOW CONTROL</text>
-            
-            <text x="20" y="380" font-family="monospace" font-size="7" fill="white" class="opacity-30">BORAN SYSTEMS DIAGRAM &bull; REV 2026.1</text>
-          </svg>
-        </div>
-        <!-- Inline Caption Below Image (Clean Editorial Style) -->
-        <div class="flex items-center justify-between font-sans text-xs text-slate-300 px-1 pt-1">
-          <div>
-            <span class="text-brand-accent-light font-semibold">Technical Profile</span>
-            <span class="text-slate-400 mx-1.5">&bull;</span>
-            <span class="text-slate-300">Steam Boiler & Aqueous Piping Schematic</span>
-          </div>
-          <span class="px-2 py-1 border border-white/25 text-slate-200 font-bold rounded-md text-[10px] uppercase">Active</span>
-        </div>
-      </div>
-    </div>
+<main>
+  <!-- About -->
+  <section>
+    <h2>About Boran Plumbing Heating &amp; Gas</h2>
+    <p>At Boran Plumbing Heating &amp; Gas, we bring over 20 years of professional plumbing experience to every job. Based in Hopedale, MA, we proudly serve homeowners throughout Middlesex County, Worcester County, and Norfolk County.</p>
+    <p>Whether it's a small repair or a complete installation, we handle every project from start to finish with quality workmanship, attention to detail, and dependable service. We specialize in steam boiler installation, repair, maintenance, and troubleshooting, along with a full range of plumbing, heating, and gas services.</p>
+    <div class="badge-line">Licensed &amp; Insured • Free Estimates • Quality Work You Can Trust</div>
   </section>
 
-
-  <!-- About Section (Word-for-Word ChatGPT Copy) -->
-  <section id="about" class="py-20 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-8 space-y-6">
-          <h2 class="text-4xl font-display font-black text-brand-primary text-balance">ABOUT BORAN PLUMBING HEATING & GAS</h2>
-          <div class="space-y-4 font-sans text-sm text-slate-600 leading-relaxed max-w-3xl">
-            <p>At Boran Plumbing Heating & Gas, we bring over 20 years of professional plumbing experience to every job. Based in Hopedale, MA, we proudly serve homeowners throughout Middlesex County, Worcester County, and Norfolk County.</p>
-            <p>Whether it's a small repair or a complete installation, we handle every project from start to finish with quality workmanship, attention to detail, and dependable service. We specialize in steam boiler installation, repair, maintenance, and troubleshooting, along with a full range of plumbing, heating, and gas services.</p>
-          </div>
-          
-          <div class="inline-flex flex-wrap items-center gap-3 px-5 py-3 bg-slate-50 border border-slate-200 text-brand-primary font-sans font-bold text-xs uppercase rounded-lg">
-            <span>Licensed &amp; Insured</span>
-            <span class="text-slate-300">&bull;</span>
-            <span>Free Estimates</span>
-            <span class="text-slate-300">&bull;</span>
-            <span class="text-brand-accent-text">Quality Work You Can Trust</span>
-          </div>
-        </div>
-        <div class="lg:col-span-4 bg-slate-50 border border-slate-200 rounded-2xl p-8 space-y-6 relative overflow-hidden">
-          <div class="font-display font-black text-9xl text-brand-primary/5 absolute -bottom-6 -right-6 leading-none">20+</div>
-          <h3 class="text-lg font-display font-black text-brand-primary uppercase">Two Decades</h3>
-          <p class="font-sans text-xs text-slate-600 leading-relaxed relative z-10">
-            Delivering high-quality residential mechanical system fittings, troubleshooting, repair service, and installations compliant with local codes.
-          </p>
-        </div>
-      </div>
-    </div>
+  <!-- Services -->
+  <section>
+    <h2>Our Services</h2>
+    <ul class="grid">
+      <li>Plumbing repairs &amp; installations</li>
+      <li>Steam boiler installation, repair &amp; maintenance</li>
+      <li>Heating system repairs &amp; service</li>
+      <li>Gas piping &amp; gas appliance installations</li>
+      <li>Water heaters</li>
+      <li>Faucets, sinks, toilets &amp; fixtures</li>
+      <li>Leak detection &amp; plumbing repairs</li>
+      <li>Bathroom &amp; kitchen plumbing</li>
+      <li>Residential plumbing renovations</li>
+      <li>Complete plumbing projects from start to finish</li>
+    </ul>
   </section>
 
-  <!-- Core Services Bento Grid -->
-  <section id="services" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-200">
-    <div class="text-left space-y-4 mb-16 max-w-3xl">
-      <h2 class="text-4xl md:text-5xl font-display font-black tracking-tight text-brand-primary text-balance">
-        PLUMBING, HEATING & GAS SERVICES
-      </h2>
-      <p class="text-sm font-sans text-slate-500 uppercase">
-        Complete plumbing projects from start to finish. We specialize in steam boiler installation, repair, maintenance, and troubleshooting, along with a full range of plumbing, heating, and gas services.
-      </p>
-    </div>
-
-    <!-- Bento Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 bg-transparent">
-      <!-- Service Card 1 (Large - General Plumbing) -->
-      <div class="md:col-span-12 group relative bg-brand-primary rounded-2xl flex flex-col justify-between p-8 md:p-10 min-h-[340px] overflow-hidden border border-brand-primary/10 shadow-md animate-slide-up-stagger" style="--i: 0">
-        <!-- Blueprint Grid Pattern (No stock photos) -->
-        <div class="absolute inset-0 z-0 opacity-15">
-          <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-            <defs>
-              <pattern id="card-grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="white" stroke-width="0.75" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#card-grid)" />
-            <!-- Soft piping graphic loop in background -->
-            <path d="M -20 150 C 100 150, 150 250, 300 250 S 500 100, 700 100" fill="none" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round" class="opacity-40" />
-          </svg>
-        </div>
-        <div class="absolute inset-0 z-0 bg-gradient-to-r from-brand-primary/95 via-brand-primary/80 to-transparent"></div>
-
-        <div class="relative z-10 space-y-4">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-accent text-white rounded-full text-xs font-sans font-bold">
-            Installations & Repairs
-          </div>
-          <h3 class="text-3xl font-display font-black text-white uppercase tracking-tight">PLUMBING REPAIRS & INSTALLATIONS</h3>
-          <p class="text-slate-200 font-sans text-sm leading-relaxed max-w-xl">
-            We handle every residential plumbing project from start to finish with quality workmanship and attention to detail:
-          </p>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 text-slate-300 font-sans text-xs pt-1">
-            <li class="flex items-center gap-1.5">&bull; Plumbing repairs &amp; installations</li>
-            <li class="flex items-center gap-1.5">&bull; Water heaters</li>
-            <li class="flex items-center gap-1.5">&bull; Faucets, sinks, toilets &amp; fixtures</li>
-            <li class="flex items-center gap-1.5">&bull; Leak detection &amp; plumbing repairs</li>
-            <li class="flex items-center gap-1.5">&bull; Bathroom &amp; kitchen plumbing</li>
-            <li class="flex items-center gap-1.5">&bull; Residential plumbing renovations</li>
-          </ul>
-        </div>
-
-        <div class="relative z-10 pt-6 border-t border-white/10 font-sans text-xs">
-          <span class="font-bold text-slate-300">Work Type: <span class="text-brand-accent-light font-bold">Residential &amp; Projects</span></span>
-        </div>
-      </div>
-
-      <!-- Service Card 2 (Steam Boiler Specialists) -->
-      <div class="md:col-span-4 bg-white rounded-2xl border border-slate-200 flex flex-col justify-between p-8 min-h-[340px] shadow-sm animate-slide-up-stagger" style="--i: 1">
-        <div class="space-y-4">
-          <div class="h-12 w-12 bg-brand-primary text-white rounded-xl flex items-center justify-center border border-brand-primary/10 shadow-md shadow-brand-primary/5">
-            <!-- Mechanical Pressure Gauge Icon -->
-            <svg class="h-6 w-6 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="9" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 12l3-3m-6 3h6" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2M3 12h2m14 0h2" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-display font-black text-brand-primary">Steam Boilers</h3>
-          <p class="font-sans text-xs text-slate-600 leading-relaxed">
-            Steam boiler installation, repair &amp; maintenance. Specialized steam troubleshooting, boiler maintenance, and scheduled repairs by experts.
-          </p>
-        </div>
-
-        <div class="pt-6 border-t border-slate-100 font-sans text-xs">
-          <span class="font-bold text-slate-500">Steam System Specialists</span>
-        </div>
-      </div>
-
-      <!-- Service Card 3 (Heating Repairs) -->
-      <div class="md:col-span-4 bg-white rounded-2xl border border-slate-200 flex flex-col justify-between p-8 min-h-[340px] shadow-sm animate-slide-up-stagger" style="--i: 2">
-        <div class="space-y-4">
-          <div class="h-12 w-12 bg-brand-primary text-white rounded-xl flex items-center justify-center border border-brand-primary/10 shadow-md shadow-brand-primary/5">
-            <!-- Mechanical Thermometer Icon -->
-            <svg class="h-6 w-6 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19c-1.657 0-3-1.343-3-3V7a3 3 0 016 0v9c0 1.657-1.343 3-3 3z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9h4m-4 4h3" />
-              <circle cx="9" cy="16" r="1.5" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-display font-black text-brand-primary">Heating System Repairs</h3>
-          <p class="font-sans text-xs text-slate-600 leading-relaxed">
-            Heating system repairs &amp; service, including furnace updates, radiator checks, component replacements, and seasonal system tune-ups.
-          </p>
-        </div>
-
-        <div class="pt-6 border-t border-slate-100 font-sans text-xs">
-          <span class="font-bold text-slate-500">Free Estimates on Installation</span>
-        </div>
-      </div>
-
-      <!-- Service Card 4 (Gas Piping) -->
-      <div class="md:col-span-4 bg-white rounded-2xl border border-slate-200 flex flex-col justify-between p-8 min-h-[340px] shadow-sm animate-slide-up-stagger" style="--i: 3">
-        <div class="space-y-4">
-          <div class="h-12 w-12 bg-brand-primary text-white rounded-xl flex items-center justify-center border border-brand-primary/10 shadow-md shadow-brand-primary/5">
-            <!-- Gas Flame Silhouette Icon -->
-            <svg class="h-6 w-6 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C12 2 6 7 6 11.5a6 6 0 0012 0C18 7 12 2 12 2z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 7c0 0-3 2.5-3 4.75a3 3 0 006 0C15 9.5 12 7 12 7z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-display font-black text-brand-primary">Gas Piping & Appliances</h3>
-          <p class="font-sans text-xs text-slate-600 leading-relaxed">
-            Gas piping &amp; gas appliance installations. Licensed gas line fitting, ranges, cooktops, dryer hookups, and safety code checks.
-          </p>
-        </div>
-
-        <div class="pt-6 border-t border-slate-100 font-sans text-xs">
-          <span class="font-bold text-slate-500">Licensed &amp; Insured Professionals</span>
-        </div>
-      </div>
-    </div>
+  <!-- Why Choose -->
+  <section>
+    <h2>Why Choose Boran Plumbing Heating &amp; Gas?</h2>
+    <ul class="grid">
+      <li>Over 20 years of experience</li>
+      <li>Steam boiler specialists</li>
+      <li>Licensed &amp; fully insured</li>
+      <li>Free estimates</li>
+      <li>Honest, dependable service</li>
+      <li>Quality craftsmanship</li>
+      <li>We treat your home with respect</li>
+    </ul>
+    <p><strong>From start to finish, we get the job done right—the first time.</strong></p>
   </section>
 
-  <!-- Why Us & Coverage -->
-  <section id="coverage" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-200 text-center">
-    <div class="space-y-8">
-      <div class="space-y-4">
-        <h2 class="text-4xl font-display font-black text-brand-primary">WHY CHOOSE US?</h2>
-      </div>
-      
-      <!-- Why Choose list grid centered -->
-      <div class="max-w-2xl mx-auto text-left font-sans text-xs text-brand-primary font-bold">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-2">
-          <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
-            <span>Over 20 years of experience</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
-            <span>Steam boiler specialists</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
-            <span>Licensed &amp; fully insured</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
-            <span>Free estimates</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
-            <span>Honest, dependable service</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
-            <span>Quality craftsmanship</span>
-          </div>
-          <div class="flex items-center gap-2 md:col-span-2 justify-center sm:justify-start">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
-            <span>We treat your home with respect</span>
-          </div>
-        </div>
+  <!-- Contact + estimate form -->
+  <section id="contact" class="contact">
+    <h2>Contact Us Today</h2>
+    <p>Call or email for your free estimate.</p>
+    <p><a href="tel:7812690150">781-269-0150</a></p>
+    <p><a href="mailto:boranplumbing@gmail.com">boranplumbing@gmail.com</a></p>
 
-        <p class="text-xs font-sans text-slate-500 uppercase tracking-wide italic mt-6 pt-6 border-t border-slate-100 text-center">
-          <strong>From start to finish, we get the job done right—the first time.</strong>
-        </p>
+    <!-- Estimate request form -->
+    <form *ngIf="bookingStatus() === 'idle' || bookingStatus() === 'error'"
+          (submit)="onSubmitBooking($event)"
+          class="estimate-form">
+
+      <div *ngIf="bookingStatus() === 'error'" role="alert" class="form-note error">
+        Please fill out your name and phone number.
       </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="name">Your Name *</label>
+          <input type="text" id="name" name="name" [(ngModel)]="bookingForm.name" required placeholder="e.g. Jane Miller" />
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" [(ngModel)]="bookingForm.phone" required placeholder="e.g. 781-269-0150" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" [(ngModel)]="bookingForm.email" placeholder="e.g. you@email.com" />
+        </div>
+        <div class="field">
+          <label for="date">Preferred Date</label>
+          <input type="date" id="date" name="date" [(ngModel)]="bookingForm.date" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="notes">Describe the Problem</label>
+        <textarea id="notes" name="notes" [(ngModel)]="bookingForm.notes" rows="4" placeholder="Tell us about the plumbing, heating, or gas issue..."></textarea>
+      </div>
+
+      <button type="submit" class="btn">Submit Estimate Request</button>
+    </form>
+
+    <!-- Loading -->
+    <div *ngIf="bookingStatus() === 'loading'" role="status" aria-live="polite" class="form-status">
+      Processing request...
     </div>
-  </section>
 
-
-  <!-- Quote Booking Request Form (Solid accent line, no hazard stripes) -->
-  <section id="booking" class="py-20 max-w-3xl mx-auto px-4 sm:px-6">
-    <div class="bg-white border border-slate-200 rounded-2xl p-8 md:p-12 shadow-xl relative">
-      <!-- Solid Brand Primary Top Line -->
-      <div class="absolute top-0 left-0 right-0 h-2 bg-brand-primary rounded-t-2xl border-b border-brand-primary/10"></div>
-
-      <!-- Header -->
-      <div class="text-center space-y-4 mb-10 pt-4">
-        <h2 class="text-3xl font-display font-black text-brand-primary">REQUEST AN ESTIMATE</h2>
-        <p class="text-xs font-sans text-slate-500 max-w-md mx-auto uppercase">
-          Submit the details below and we'll get back to you about your free estimate.
-        </p>
-      </div>
-
-      <!-- Initial state -->
-      <form *ngIf="bookingStatus() === 'idle' || bookingStatus() === 'error'" 
-            (submit)="onSubmitBooking($event)" 
-            class="space-y-6 font-sans text-xs">
-        
-        <!-- Error notification -->
-        <div *ngIf="bookingStatus() === 'error'"
-             role="alert"
-             class="p-4 border border-brand-primary bg-slate-50 text-brand-primary font-bold uppercase animate-fade-in rounded-lg">
-          Please fill out all required fields marked with an asterisk (*).
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Name -->
-          <div>
-            <label for="name" class="block font-bold uppercase text-slate-500 mb-2">Your Name *</label>
-            <input type="text" 
-                   id="name" 
-                   name="name"
-                   [(ngModel)]="bookingForm.name"
-                   required
-                   placeholder="e.g. Jane Miller" 
-                   class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold" />
-          </div>
-
-          <!-- Phone -->
-          <div>
-            <label for="phone" class="block font-bold uppercase text-slate-500 mb-2">Phone Number *</label>
-            <input type="tel" 
-                   id="phone" 
-                   name="phone"
-                   [(ngModel)]="bookingForm.phone"
-                   required
-                   placeholder="e.g. (781) 269-0150" 
-                   class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold" />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Email -->
-          <div>
-            <label for="email" class="block font-bold uppercase text-slate-500 mb-2">Email Address</label>
-            <input type="email" 
-                   id="email" 
-                   name="email"
-                   [(ngModel)]="bookingForm.email"
-                   placeholder="e.g. client@email.com" 
-                   class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold" />
-          </div>
-
-          <!-- Service Category -->
-          <div>
-            <label for="serviceType" class="block font-bold uppercase text-slate-500 mb-2">Required Service *</label>
-            <select id="serviceType" 
-                    name="serviceType"
-                    [(ngModel)]="bookingForm.serviceType"
-                    required
-                    class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold appearance-none cursor-pointer">
-              <option value="" disabled selected>Select category...</option>
-              <option value="emergency">Plumbing Repairs & Installations</option>
-              <option value="boiler">Steam Boiler Specialists</option>
-              <option value="heating">Heating System Repairs & Service</option>
-              <option value="gas">Gas Piping & Appliances</option>
-              <option value="other">General Inspection / Other</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Target Date -->
-          <div>
-            <label for="date" class="block font-bold uppercase text-slate-500 mb-2">Target Date</label>
-            <input type="date" 
-                   id="date" 
-                   name="date"
-                   [(ngModel)]="bookingForm.date"
-                   class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold cursor-pointer" />
-          </div>
-
-          <!-- Time slot -->
-          <div>
-            <label for="timeSlot" class="block font-bold uppercase text-slate-500 mb-2">Preferred Window</label>
-            <select id="timeSlot" 
-                    name="timeSlot"
-                    [(ngModel)]="bookingForm.timeSlot"
-                    class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold appearance-none cursor-pointer">
-              <option value="" selected>Select time window...</option>
-              <option value="morning">Morning (08:00 - 12:00)</option>
-              <option value="afternoon">Afternoon (12:00 - 16:00)</option>
-              <option value="evening">Late Afternoon (16:00 - 18:00)</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Issue Notes -->
-        <div>
-          <label for="notes" class="block font-bold uppercase text-slate-500 mb-2">Describe the Problem</label>
-          <textarea id="notes" 
-                    name="notes"
-                    [(ngModel)]="bookingForm.notes"
-                    rows="4" 
-                    placeholder="Describe pipe, boiler or gas symptoms..." 
-                    class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold resize-none"></textarea>
-        </div>
-
-        <button type="submit" 
-                class="inline-flex items-center justify-center w-full px-6 py-4 bg-brand-primary text-white hover:bg-brand-accent hover:text-brand-primary hover:border-brand-accent border border-brand-primary font-bold transition-all active:scale-[0.98] rounded-xl shadow-lg shadow-brand-primary/10 cursor-pointer">
-          Submit Estimate Request
-        </button>
-      </form>
-
-      <!-- Loading state -->
-      <div *ngIf="bookingStatus() === 'loading'"
-           role="status" aria-live="polite" aria-busy="true"
-           class="py-16 text-center space-y-4 animate-fade-in font-sans text-xs font-bold">
-        <div class="inline-block relative h-10 w-10">
-          <span class="absolute inset-0 border-4 border-brand-primary/20 rounded-full" aria-hidden="true"></span>
-          <span class="absolute inset-0 border-4 border-brand-primary border-t-transparent animate-spin rounded-full" aria-hidden="true"></span>
-        </div>
-        <p class="text-slate-500">Processing request...</p>
-      </div>
-
-      <!-- Success state -->
-      <div *ngIf="bookingStatus() === 'success'"
-           role="status" aria-live="polite"
-           class="py-12 text-center space-y-6 animate-fade-in font-sans text-xs font-bold uppercase">
-        <div class="h-16 w-16 bg-emerald-50 border-2 border-emerald-500 rounded-full flex items-center justify-center text-emerald-600 mx-auto">
-          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-          </svg>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-2xl font-display font-black text-brand-primary">Request Submitted Successfully</h3>
-          <p class="text-slate-500 max-w-sm mx-auto normal-case font-normal">
-            Your estimate request has been received. We'll be in touch soon.
-          </p>
-        </div>
-        <button (click)="resetBookingStatus()" 
-                type="button" 
-                class="inline-flex items-center justify-center px-5 py-2.5 bg-neutral-100 border border-slate-200 text-brand-primary hover:bg-slate-200 transition-all active:scale-[0.98] rounded-lg">
-          Submit New Request
-        </button>
-      </div>
+    <!-- Success -->
+    <div *ngIf="bookingStatus() === 'success'" role="status" aria-live="polite" class="form-success">
+      <div class="check" aria-hidden="true">✓</div>
+      <h3>Request Submitted Successfully</h3>
+      <p>Your estimate request has been received. We'll be in touch soon.</p>
+      <button (click)="resetBookingStatus()" type="button" class="btn">Submit New Request</button>
     </div>
   </section>
 </main>
 
-<!-- Footer -->
-<footer class="border-t-4 border-brand-primary bg-brand-primary py-12 md:py-16 w-full text-slate-300 text-xs font-sans">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-10">
-    <!-- Info Column -->
-    <div class="md:col-span-5 space-y-4">
-      <div class="flex items-center">
-        <!-- Footer Logo (Made Larger) -->
-        <img src="logo.jpg" alt="Boran Plumbing Logo" width="1024" height="768" loading="lazy" decoding="async" class="h-18 w-auto object-contain bg-white p-2 rounded-xl border-2 border-brand-primary shadow-md" />
-      </div>
-      <p class="text-slate-300 max-w-xs leading-relaxed text-xs">
-        Premium commercial and residential plumbing, gas, and steam boiler solutions. Licensed and fully insured in Massachusetts.
-      </p>
-      <span class="block text-[10px] font-bold text-brand-accent-light">Free Estimates &bull; Licensed &amp; Fully Insured</span>
-    </div>
-
-    <!-- Quick Links Column -->
-    <div class="md:col-span-3 space-y-4">
-      <h4 class="text-xs font-bold text-white font-sans uppercase tracking-wider">Navigation</h4>
-      <ul class="space-y-2 text-[12px] font-semibold">
-        <li><a href="#about" class="hover:text-brand-accent transition-colors">About</a></li>
-        <li><a href="#services" class="hover:text-brand-accent transition-colors">Services</a></li>
-        <li><a href="#coverage" class="hover:text-brand-accent transition-colors">Why Us</a></li>
-      </ul>
-    </div>
-
-    <!-- Contact Info Column -->
-    <div class="md:col-span-4 space-y-4">
-      <h4 class="text-xs font-bold text-white font-sans uppercase tracking-wider">Contact Info</h4>
-      <div class="space-y-2 text-[12px] font-semibold">
-        <a href="tel:7812690150" class="block text-base text-brand-accent-light hover:underline transition-colors font-bold">
-          (781) 269-0150
-        </a>
-        <p class="text-slate-300 leading-normal">
-          Office: Hopedale, MA 01747
-        </p>
-        <span class="block text-white">Email: boranplumbing@gmail.com</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/10 text-center flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono font-bold">
-    <span>&copy; 2026 BORAN PLUMBING HEATING & GAS. ALL RIGHTS RESERVED.</span>
-    <div class="flex gap-6">
-      <a href="#" class="inline-block py-2 hover:text-white transition-colors">Privacy Policy</a>
-      <a href="#" class="inline-block py-2 hover:text-white transition-colors">Terms of Service</a>
-    </div>
-  </div>
+<footer>
+  © 2026 Boran Plumbing Heating &amp; Gas. All rights reserved.
 </footer>

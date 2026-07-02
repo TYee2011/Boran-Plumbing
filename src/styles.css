@@ -1,74 +1,188 @@
-@import "tailwindcss";
-
-@theme {
-  /* Colors matched directly to the corporate logo */
-  --color-brand-primary: #124773;      /* Boran Navy Blue */
-  --color-brand-accent: #0ea5e9;       /* Water Droplet Blue (fills, icons, large display) */
-  --color-brand-accent-hover: #38bdf8;
-  --color-brand-accent-text: #0369a1;  /* Darker aqueous blue for accent TEXT on light bg (WCAG AA 5.8:1) */
-  --color-brand-accent-light: #7dd3fc; /* Lighter aqueous blue for accent text ON navy (AA 5.7:1) */
-  
-  --color-substrate-light: #f8fafc;    /* Clean off-white */
-  --color-substrate-card: #ffffff;     /* Pure white */
-  --color-carbon-text: #0f172a;        /* Deep slate text */
-  --color-border-line: #e2e8f0;        /* Soft gray borders */
-  
-  --font-sans: 'Lexend', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Geist Mono', monospace;
-  --font-display: 'Barlow Condensed', system-ui, -apple-system, sans-serif;
-  --font-logo: 'Barlow Condensed', system-ui, -apple-system, sans-serif;
+/* Boran Plumbing — matched to reference site (deft-biscotti-dd44dd.netlify.app) */
+:root {
+  --blue: #06497c;
+  --dark: #0b1f33;
+  --light: #f4f8fb;
+  --accent: #2aa7df;
+  --white: #ffffff;
 }
 
-/* Custom Base Styles */
-html {
-  scroll-behavior: smooth;
-  font-family: var(--font-sans);
-  background-color: var(--color-substrate-light);
-  color: var(--color-carbon-text);
-}
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  padding: 0;
-  min-height: 100dvh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--dark);
+  background: var(--light);
+  line-height: 1.6;
 }
 
+/* Header / hero */
+header {
+  background: linear-gradient(135deg, #043c68, #086098);
+  color: var(--white);
+  text-align: center;
+  padding: 32px 20px 48px;
+}
+.logo {
+  max-width: 340px;
+  width: 90%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+}
 h1 {
-  font-family: var(--font-logo);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 0.9;
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin: 0 0 12px;
+  line-height: 1.1;
+}
+.subtitle {
+  font-size: 1.25rem;
+  max-width: 900px;
+  margin: 0 auto 24px;
+}
+.cta-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.btn {
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.2;
+  background: var(--white);
+  color: var(--blue);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
+  border: none;
+  cursor: pointer;
+}
+.btn.secondary {
+  background: var(--accent);
+  color: var(--white);
 }
 
-h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  line-height: 1.0;
+/* Content sections */
+main { max-width: 1100px; margin: -28px auto 0; padding: 0 20px 40px; }
+section {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(7, 42, 68, .1);
+}
+h2 { color: var(--blue); margin-top: 0; font-size: 2rem; }
+.badge-line {
+  background: #e7f5fc;
+  color: var(--blue);
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 22px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+}
+.grid li {
+  background: var(--light);
+  padding: 16px;
+  border-radius: 12px;
+  border-left: 5px solid var(--accent);
+  font-weight: 600;
 }
 
-/* Custom Scrollbar - Matched to Logo Blue */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* Contact card (blue) + estimate form */
+.contact {
+  text-align: center;
+  background: var(--blue);
+  color: var(--white);
 }
-::-webkit-scrollbar-track {
-  background: var(--color-substrate-light);
+.contact h2 { color: var(--white); }
+.contact > p a { color: var(--white); font-weight: bold; font-size: 1.2rem; }
+
+.estimate-form {
+  max-width: 620px;
+  margin: 28px auto 0;
+  text-align: left;
 }
-::-webkit-scrollbar-thumb {
-  background: var(--color-brand-primary);
-  border-radius: 8px;
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-brand-accent);
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-weight: bold;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cdd9e3;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--white);
+  color: var(--dark);
+}
+.field input::placeholder,
+.field textarea::placeholder { color: #6b7a88; }
+.field input:focus,
+.field textarea:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+.field textarea { resize: vertical; }
+.estimate-form .btn { width: 100%; margin-top: 8px; }
+
+.form-note {
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.form-note.error { background: #fde8e8; color: #a12020; }
+
+.form-status { padding: 24px; font-weight: bold; }
+
+.form-success { padding: 8px 0; }
+.form-success .check {
+  font-size: 3rem;
+  line-height: 1;
+  color: #6ee7a8;
+}
+.form-success h3 { margin: 12px 0 8px; font-size: 1.5rem; }
+.form-success .btn { margin-top: 20px; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 24px 20px;
+  color: #51606d;
 }
 
-.tech-label {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+@media (max-width: 560px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
