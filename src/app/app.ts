@@ -21,7 +21,7 @@ export class App {
   protected readonly bookingStatus = signal<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   // Web3Forms Access Key (from https://web3forms.com)
-  private readonly web3formsAccessKey: string = '68c614e2-97a3-4964-9b46-b95cb9ec16e6';
+  private readonly web3formsAccessKey: string = '68c614e2-97a3-4964-9b4b-b95cb9ec16e6';
 
   private resetForm(): void {
     this.bookingForm = { name: '', phone: '', email: '', date: '', notes: '' };
