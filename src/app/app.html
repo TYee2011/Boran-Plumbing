@@ -3,16 +3,16 @@
      class="relative bg-brand-primary text-white px-4 py-3 text-xs md:text-sm font-sans font-medium flex items-center justify-between border-b border-brand-primary/20 z-50">
   <div class="flex items-center gap-2 mx-auto">
     <!-- Active mechanical status indicator -->
-    <span class="relative flex h-2 w-2">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+    <span class="relative flex h-2 w-2" aria-hidden="true">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
     </span>
     <span>Steam Boiler Specialists &bull; Free Estimates &bull;</span>
     <a href="tel:7812690150" class="underline hover:text-brand-accent transition-colors font-bold ml-1">Call (781) 269-0150</a>
   </div>
-  <button (click)="dismissEmergencyBanner()" 
-          type="button" 
-          class="text-white hover:text-brand-accent transition-colors font-sans font-bold px-2 py-0.5 border border-white/20 hover:border-brand-accent rounded text-xs" 
+  <button (click)="dismissEmergencyBanner()"
+          type="button"
+          class="inline-flex items-center justify-center text-white hover:text-brand-accent transition-colors font-sans font-bold min-h-[44px] px-3 border border-white/20 hover:border-brand-accent rounded text-xs"
           aria-label="Dismiss alert">
     Dismiss
   </button>
@@ -23,8 +23,8 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between relative">
     
     <!-- Hanging Brand Logo Image (Stands Out Prominently) -->
-    <a href="#" class="absolute top-0 left-4 md:left-8 bg-white border-2 border-brand-primary border-t-0 px-4 pb-4 pt-2 shadow-lg z-50 rounded-b-2xl flex items-center transition-all hover:scale-[1.02]">
-      <img src="logo.jpg" alt="Boran Plumbing Heating & Gas Logo" class="h-20 md:h-24 w-auto object-contain rounded-lg" />
+    <a href="/" aria-label="Boran Plumbing Heating & Gas — home" class="absolute top-0 left-4 md:left-8 bg-white border-2 border-brand-primary border-t-0 px-4 pb-4 pt-2 shadow-lg z-50 rounded-b-2xl flex items-center transition-all hover:scale-[1.02]">
+      <img src="logo.jpg" alt="Boran Plumbing Heating & Gas Logo" width="1024" height="768" decoding="async" class="h-20 md:h-24 w-auto object-contain rounded-lg" />
     </a>
 
     <!-- Spacer to push menu items to the right past the hanging logo -->
@@ -32,40 +32,37 @@
 
     <!-- Desktop Navigation Links -->
     <nav class="hidden lg:flex items-center gap-8 font-sans text-sm font-semibold text-brand-primary">
+      <a href="#about" class="hover:text-brand-accent transition-colors">About</a>
       <a href="#services" class="hover:text-brand-accent transition-colors">Services</a>
-      <a href="#process" class="hover:text-brand-accent transition-colors">Our Process</a>
-      <a href="#coverage" class="hover:text-brand-accent transition-colors">Why Us & Coverage</a>
+      <a href="#coverage" class="hover:text-brand-accent transition-colors">Why Us</a>
       <span class="text-slate-300" aria-hidden="true">|</span>
-      <a href="tel:7812690150" class="text-brand-accent hover:underline transition-colors flex items-center gap-1.5 font-bold">
+      <a href="tel:7812690150" class="text-brand-primary hover:text-brand-accent-text hover:underline transition-colors flex items-center gap-1.5 font-bold">
         (781) 269-0150
-      </a>
-      <a href="#booking" class="inline-flex items-center justify-center px-5 py-2.5 bg-brand-primary text-white hover:bg-brand-accent hover:text-brand-primary hover:border-brand-accent transition-colors rounded-lg border border-brand-primary">
-        Book Service
       </a>
     </nav>
 
     <!-- Mobile Navigation Trigger -->
-    <button (click)="toggleMobileMenu()" 
-            type="button" 
-            class="lg:hidden p-2 text-brand-primary hover:text-brand-accent transition-colors font-sans font-bold" 
-            aria-label="Toggle menu">
+    <button (click)="toggleMobileMenu()"
+            type="button"
+            class="lg:hidden inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 text-brand-primary hover:text-brand-accent transition-colors font-sans font-bold"
+            aria-label="Toggle menu"
+            aria-controls="mobile-menu"
+            [attr.aria-expanded]="isMobileMenuOpen()">
       <span *ngIf="!isMobileMenuOpen()">Menu</span>
       <span *ngIf="isMobileMenuOpen()">Close</span>
     </button>
   </div>
 
   <!-- Mobile Dropdown Menu -->
-  <div *ngIf="isMobileMenuOpen()" 
+  <div *ngIf="isMobileMenuOpen()"
+       id="mobile-menu"
        class="lg:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-2 z-30 relative shadow-md animate-mobile-menu">
+    <a href="#about" (click)="closeMobileMenu()" class="block px-3 py-2 font-sans text-sm font-semibold text-brand-primary hover:bg-brand-primary hover:text-white rounded-lg transition-all">About</a>
     <a href="#services" (click)="closeMobileMenu()" class="block px-3 py-2 font-sans text-sm font-semibold text-brand-primary hover:bg-brand-primary hover:text-white rounded-lg transition-all">Services</a>
-    <a href="#process" (click)="closeMobileMenu()" class="block px-3 py-2 font-sans text-sm font-semibold text-brand-primary hover:bg-brand-primary hover:text-white rounded-lg transition-all">Our Process</a>
-    <a href="#coverage" (click)="closeMobileMenu()" class="block px-3 py-2 font-sans text-sm font-semibold text-brand-primary hover:bg-brand-primary hover:text-white rounded-lg transition-all">Why Us & Coverage</a>
+    <a href="#coverage" (click)="closeMobileMenu()" class="block px-3 py-2 font-sans text-sm font-semibold text-brand-primary hover:bg-brand-primary hover:text-white rounded-lg transition-all">Why Us</a>
     <div class="pt-4 border-t border-slate-200 flex flex-col gap-2">
-      <a href="tel:7812690150" class="inline-flex items-center justify-center w-full px-4 py-3 font-sans font-bold text-brand-accent border border-brand-accent/20 bg-brand-accent/5 hover:bg-brand-accent/10 rounded-lg transition-all">
+      <a href="tel:7812690150" class="inline-flex items-center justify-center w-full px-4 py-3 font-sans font-bold text-brand-primary border border-brand-accent/20 bg-brand-accent/5 hover:bg-brand-accent/10 rounded-lg transition-all">
         Call (781) 269-0150
-      </a>
-      <a href="#booking" (click)="closeMobileMenu()" class="inline-flex items-center justify-center w-full px-4 py-3 font-sans font-bold bg-brand-primary text-white hover:bg-brand-accent hover:text-brand-primary transition-all rounded-lg">
-        Book Service
       </a>
     </div>
   </div>
@@ -84,7 +81,7 @@
           Boran Plumbing Heating & Gas
         </div>
         
-        <h1 class="text-5xl md:text-6xl lg:text-7.5xl tracking-tighter leading-[0.95] text-white uppercase">
+        <h1 class="text-5xl md:text-6xl lg:text-[5.25rem] tracking-tighter leading-[0.95] text-white uppercase text-balance">
           Reliable Plumbing, <br/>
           Heating & Gas Services <br/>
           <span class="text-brand-accent">Done Right</span>
@@ -102,22 +99,6 @@
             Call (781) 269-0150
           </a>
         </div>
-        
-        <!-- Key Trust Badges -->
-        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-md font-sans text-xs text-slate-300">
-          <div>
-            <span class="block text-xl font-bold font-display text-white">20+ Years</span>
-            <span class="block text-[10px] text-slate-400 font-bold mt-1">Field Experience</span>
-          </div>
-          <div>
-            <span class="block text-xl font-bold font-display text-white">Steam</span>
-            <span class="block text-[10px] text-slate-400 font-bold mt-1">Boiler Specialists</span>
-          </div>
-          <div>
-            <span class="block text-xl font-bold font-display text-white">Free</span>
-            <span class="block text-[10px] text-slate-400 font-bold mt-1">Estimate Policy</span>
-          </div>
-        </div>
       </div>
       
       <!-- Hero Visual Asset (Technical Blueprint Schematic) -->
@@ -126,7 +107,7 @@
           <!-- Blueprint gradient background -->
           <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-primary via-slate-900 to-slate-950 z-0"></div>
           
-          <svg class="relative z-10 w-full h-full text-white/5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+          <svg class="relative z-10 w-full h-full text-white/5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false">
             <!-- Grid pattern -->
             <defs>
               <pattern id="blueprint-grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -188,13 +169,13 @@
           </svg>
         </div>
         <!-- Inline Caption Below Image (Clean Editorial Style) -->
-        <div class="flex items-center justify-between font-sans text-xs text-slate-400 px-1 pt-1 opacity-90">
+        <div class="flex items-center justify-between font-sans text-xs text-slate-300 px-1 pt-1">
           <div>
-            <span class="text-brand-accent font-semibold">Technical Profile</span>
-            <span class="text-slate-500 mx-1.5">&bull;</span>
-            <span class="text-slate-400">Steam Boiler & Aqueous Piping Schematic</span>
+            <span class="text-brand-accent-light font-semibold">Technical Profile</span>
+            <span class="text-slate-400 mx-1.5">&bull;</span>
+            <span class="text-slate-300">Steam Boiler & Aqueous Piping Schematic</span>
           </div>
-          <span class="px-2 py-0.5 border border-slate-200/20 text-slate-400 font-bold rounded-md text-[10px] uppercase">Active</span>
+          <span class="px-2 py-1 border border-white/25 text-slate-200 font-bold rounded-md text-[10px] uppercase">Active</span>
         </div>
       </div>
     </div>
@@ -206,8 +187,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-8 space-y-6">
-          <span class="text-brand-accent font-sans text-[11px] font-bold tracking-widest uppercase">About Boran</span>
-          <h2 class="text-4xl font-display font-black text-brand-primary">ABOUT BORAN PLUMBING HEATING & GAS</h2>
+          <h2 class="text-4xl font-display font-black text-brand-primary text-balance">ABOUT BORAN PLUMBING HEATING & GAS</h2>
           <div class="space-y-4 font-sans text-sm text-slate-600 leading-relaxed max-w-3xl">
             <p>At Boran Plumbing Heating & Gas, we bring over 20 years of professional plumbing experience to every job. Based in Hopedale, MA, we proudly serve homeowners throughout Middlesex County, Worcester County, and Norfolk County.</p>
             <p>Whether it's a small repair or a complete installation, we handle every project from start to finish with quality workmanship, attention to detail, and dependable service. We specialize in steam boiler installation, repair, maintenance, and troubleshooting, along with a full range of plumbing, heating, and gas services.</p>
@@ -218,7 +198,7 @@
             <span class="text-slate-300">&bull;</span>
             <span>Free Estimates</span>
             <span class="text-slate-300">&bull;</span>
-            <span class="text-brand-accent">Quality Work You Can Trust</span>
+            <span class="text-brand-accent-text">Quality Work You Can Trust</span>
           </div>
         </div>
         <div class="lg:col-span-4 bg-slate-50 border border-slate-200 rounded-2xl p-8 space-y-6 relative overflow-hidden">
@@ -235,8 +215,7 @@
   <!-- Core Services Bento Grid -->
   <section id="services" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-200">
     <div class="text-left space-y-4 mb-16 max-w-3xl">
-      <span class="text-xs font-mono font-bold text-brand-accent uppercase tracking-wider">Our Services</span>
-      <h2 class="text-4xl md:text-5xl font-display font-black tracking-tight text-brand-primary">
+      <h2 class="text-4xl md:text-5xl font-display font-black tracking-tight text-brand-primary text-balance">
         PLUMBING, HEATING & GAS SERVICES
       </h2>
       <p class="text-sm font-sans text-slate-500 uppercase">
@@ -250,7 +229,7 @@
       <div class="md:col-span-8 group relative bg-brand-primary rounded-2xl flex flex-col justify-between p-8 md:p-10 min-h-[380px] overflow-hidden border border-brand-primary/10 shadow-md animate-slide-up-stagger" style="--i: 0">
         <!-- Blueprint Grid Pattern (No stock photos) -->
         <div class="absolute inset-0 z-0 opacity-15">
-          <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <defs>
               <pattern id="card-grid" width="30" height="30" patternUnits="userSpaceOnUse">
                 <path d="M 30 0 L 0 0 0 30" fill="none" stroke="white" stroke-width="0.75" />
@@ -281,15 +260,8 @@
           </ul>
         </div>
 
-        <div class="relative z-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-sans text-xs">
-          <span class="font-bold text-slate-300">Work Type: <span class="text-brand-accent font-bold">Residential & Projects</span></span>
-          <button (click)="selectServiceForBooking('emergency')" 
-                  class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-accent text-brand-primary hover:bg-white hover:text-brand-primary transition-all font-bold rounded-lg cursor-pointer">
-            Book Service
-            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-          </button>
+        <div class="relative z-10 pt-6 border-t border-white/10 font-sans text-xs">
+          <span class="font-bold text-slate-300">Work Type: <span class="text-brand-accent-light font-bold">Residential &amp; Projects</span></span>
         </div>
       </div>
 
@@ -298,7 +270,7 @@
         <div class="space-y-4">
           <div class="h-12 w-12 bg-brand-primary text-white rounded-xl flex items-center justify-center border border-brand-primary/10 shadow-md shadow-brand-primary/5">
             <!-- Mechanical Pressure Gauge Icon -->
-            <svg class="h-6 w-6 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <svg class="h-6 w-6 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" focusable="false">
               <circle cx="12" cy="12" r="9" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 12l3-3m-6 3h6" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2M3 12h2m14 0h2" />
@@ -310,12 +282,8 @@
           </p>
         </div>
 
-        <div class="pt-8 border-t border-slate-100 flex items-center justify-between font-sans text-xs">
+        <div class="pt-6 border-t border-slate-100 font-sans text-xs">
           <span class="font-bold text-slate-500">Steam System Specialists</span>
-          <button (click)="selectServiceForBooking('boiler')" 
-                  class="px-4 py-2 bg-slate-100 text-brand-primary hover:bg-brand-primary hover:text-white font-bold rounded-lg transition-all text-xs cursor-pointer">
-            Book Service
-          </button>
         </div>
       </div>
 
@@ -324,7 +292,7 @@
         <div class="space-y-4">
           <div class="h-12 w-12 bg-brand-primary text-white rounded-xl flex items-center justify-center border border-brand-primary/10 shadow-md shadow-brand-primary/5">
             <!-- Mechanical Thermometer Icon -->
-            <svg class="h-6 w-6 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <svg class="h-6 w-6 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 19c-1.657 0-3-1.343-3-3V7a3 3 0 016 0v9c0 1.657-1.343 3-3 3z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 9h4m-4 4h3" />
               <circle cx="9" cy="16" r="1.5" />
@@ -336,12 +304,8 @@
           </p>
         </div>
 
-        <div class="pt-8 border-t border-slate-100 flex items-center justify-between font-sans text-xs">
+        <div class="pt-6 border-t border-slate-100 font-sans text-xs">
           <span class="font-bold text-slate-500">Free Estimates on Installation</span>
-          <button (click)="selectServiceForBooking('heating')" 
-                  class="px-4 py-2 bg-slate-100 text-brand-primary hover:bg-brand-primary hover:text-white font-bold rounded-lg transition-all text-xs cursor-pointer">
-            Book Service
-          </button>
         </div>
       </div>
 
@@ -350,7 +314,7 @@
         <div class="space-y-4">
           <div class="h-12 w-12 bg-brand-primary text-white rounded-xl flex items-center justify-center border border-brand-primary/10 shadow-md shadow-brand-primary/5">
             <!-- Gas Flame Silhouette Icon -->
-            <svg class="h-6 w-6 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <svg class="h-6 w-6 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C12 2 6 7 6 11.5a6 6 0 0012 0C18 7 12 2 12 2z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 7c0 0-3 2.5-3 4.75a3 3 0 006 0C15 9.5 12 7 12 7z" />
             </svg>
@@ -361,221 +325,70 @@
           </p>
         </div>
 
-        <div class="pt-8 border-t border-slate-100 flex items-center justify-between font-sans text-xs">
-          <span class="font-bold text-slate-500">Licensed & Insured Professionals</span>
-          <button (click)="selectServiceForBooking('gas')" 
-                  class="px-4 py-2 bg-slate-100 text-brand-primary hover:bg-brand-primary hover:text-white font-bold rounded-lg transition-all text-xs cursor-pointer">
-            Book Service
-          </button>
+        <div class="pt-6 border-t border-slate-100 font-sans text-xs">
+          <span class="font-bold text-slate-500">Licensed &amp; Insured Professionals</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- The Process (3 Columns Numeric) -->
-  <section id="process" class="py-20 bg-slate-50 border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-left space-y-4 mb-16">
-        <span class="text-xs font-mono font-bold text-brand-accent uppercase tracking-wider">Our Process</span>
-        <h2 class="text-4xl font-display font-black text-brand-primary">HOW WE WORK</h2>
-        <p class="text-sm font-sans text-slate-500 uppercase max-w-2xl">
-          We keep the process transparent, simple, and clean from start to finish.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-transparent">
-        <!-- Step 1 -->
-        <div class="relative space-y-4 p-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
-          <div class="font-display font-black text-6xl text-brand-primary/5 absolute top-4 right-6 leading-none">01</div>
-          <div class="h-10 w-10 bg-brand-primary text-white flex items-center justify-center rounded-xl shadow-md shadow-brand-primary/5">
-            <svg class="h-5 w-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v7M12 11a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 11h-3M8 11H5M12 17v3" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-display font-black text-brand-primary pt-2">Free Estimate</h3>
-          <p class="font-sans text-xs text-slate-600 leading-relaxed">
-            We review your plumbing systems, boiler loops, or gas fixtures to provide an upfront, transparent scope of work.
-          </p>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="relative space-y-4 p-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
-          <div class="font-display font-black text-6xl text-brand-primary/5 absolute top-4 right-6 leading-none">02</div>
-          <div class="h-10 w-10 bg-brand-primary text-white flex items-center justify-center rounded-xl shadow-md shadow-brand-primary/5">
-            <svg class="h-5 w-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6M9 16h4M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5L20 7.5V19a2 2 0 0 1-2 2Z" />
-              <circle cx="17" cy="18" r="2.5" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-display font-black text-brand-primary pt-2">Locked Estimate</h3>
-          <p class="font-sans text-xs text-slate-600 leading-relaxed">
-            You receive a clear, locked-in estimate specifying all parts and labor units. The price stays fixed with zero hidden fees.
-          </p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="relative space-y-4 p-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
-          <div class="font-display font-black text-6xl text-brand-primary/5 absolute top-4 right-6 leading-none">03</div>
-          <div class="h-10 w-10 bg-brand-primary text-white flex items-center justify-center rounded-xl shadow-md shadow-brand-primary/5">
-            <svg class="h-5 w-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-display font-black text-brand-primary pt-2">Quality Craftsmanship</h3>
-          <p class="font-sans text-xs text-slate-600 leading-relaxed">
-            We execute the repair or installation to strict plumbing codes, pressure-leak test the lines, and clean the workspace back to layout.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Us & Service Area Map & Search -->
-  <section id="coverage" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-200">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-      <!-- Why Choose Us List -->
-      <div class="lg:col-span-7 space-y-6">
-        <span class="text-xs font-mono font-bold text-brand-accent uppercase tracking-wider">Core Standards</span>
+  <!-- Why Us & Coverage -->
+  <section id="coverage" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-200 text-center">
+    <div class="space-y-8">
+      <div class="space-y-4">
         <h2 class="text-4xl font-display font-black text-brand-primary">WHY CHOOSE US?</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 pt-2 font-sans text-xs text-brand-primary font-bold">
+      </div>
+      
+      <!-- Why Choose list grid centered -->
+      <div class="max-w-2xl mx-auto text-left font-sans text-xs text-brand-primary font-bold">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-2">
           <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span>Over 20 years of experience</span>
           </div>
           <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span>Steam boiler specialists</span>
           </div>
           <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span>Licensed &amp; fully insured</span>
           </div>
           <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span>Free estimates</span>
           </div>
           <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span>Honest, dependable service</span>
           </div>
           <div class="flex items-center gap-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span>Quality craftsmanship</span>
           </div>
-          <div class="flex items-center gap-2 md:col-span-2">
-            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+          <div class="flex items-center gap-2 md:col-span-2 justify-center sm:justify-start">
+            <svg class="h-4.5 w-4.5 text-brand-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
             <span>We treat your home with respect</span>
           </div>
         </div>
 
-        <p class="text-xs font-sans text-slate-500 uppercase tracking-wide italic mt-4 pt-4 border-t border-slate-100">
+        <p class="text-xs font-sans text-slate-500 uppercase tracking-wide italic mt-6 pt-6 border-t border-slate-100 text-center">
           <strong>From start to finish, we get the job done right—the first time.</strong>
         </p>
-
-        <!-- Cities list grid -->
-        <div class="pt-6 border-t border-slate-200">
-          <span class="text-xs font-sans font-bold text-brand-primary block mb-3 font-semibold">Active Service Area</span>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 font-sans text-xs font-bold text-brand-primary">
-            <div class="flex items-center gap-2">
-              <svg class="h-4.5 w-4.5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-              </svg>
-              <span>Hopedale (HQ)</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-4.5 w-4.5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-              </svg>
-              <span>Milford</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-4.5 w-4.5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-              </svg>
-              <span>Worcester</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-4.5 w-4.5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-              </svg>
-              <span>Franklin</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-4.5 w-4.5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-              </svg>
-              <span>Framingham</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-4.5 w-4.5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-              </svg>
-              <span>Bellingham</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Checker Card (Solid accent line, no hazard stripes) -->
-      <div class="lg:col-span-5 bg-white border border-slate-200 p-8 relative rounded-2xl shadow-lg">
-        <!-- Solid Brand Accent Top Line -->
-        <div class="absolute top-0 left-0 right-0 h-1.5 bg-brand-accent rounded-t-2xl border-b border-brand-primary/10"></div>
-
-        <h3 class="text-lg font-display font-black text-brand-primary mb-2 uppercase pt-2">Check Coverage Area</h3>
-        <p class="text-xs font-sans text-slate-500 mb-6 uppercase">Enter 5-digit zip code to verify immediate dispatch radius.</p>
-        
-        <form (ngSubmit)="checkZipCode()" class="space-y-4 font-sans text-xs">
-          <div>
-            <label for="zipCode" class="block font-bold uppercase tracking-wider text-slate-500 mb-2">Zip Code</label>
-            <div class="flex gap-2">
-              <input type="text" 
-                     id="zipCode" 
-                     name="zipCode"
-                     [(ngModel)]="zipCodeInput"
-                     placeholder="e.g. 01747" 
-                     class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold" />
-              <button type="submit" 
-                      class="px-5 py-3 bg-brand-primary text-white hover:bg-brand-accent hover:text-brand-primary hover:border-brand-accent font-bold transition-colors rounded-lg cursor-pointer">
-                Check
-              </button>
-            </div>
-          </div>
-        </form>
-
-        <!-- Zip Result Output -->
-        <div *ngIf="zipCheckResult().checked" 
-             class="mt-6 p-4 border text-xs font-sans font-bold uppercase animate-fade-in rounded-lg"
-             [ngClass]="{
-               'bg-emerald-50 border-emerald-500 text-emerald-800': zipCheckResult().isSupported,
-               'bg-slate-50 border-brand-primary text-brand-primary': !zipCheckResult().isSupported
-             }">
-          <div class="flex items-start gap-3">
-            <div>
-              <p class="normal-case font-medium">{{ zipCheckResult().message }}</p>
-              <a *ngIf="zipCheckResult().isSupported" 
-                 href="#booking" 
-                 class="inline-block mt-3 font-bold underline text-brand-primary hover:text-brand-accent">
-                Book Online Estimate
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -589,10 +402,9 @@
 
       <!-- Header -->
       <div class="text-center space-y-4 mb-10 pt-4">
-        <span class="text-xs font-mono font-bold text-brand-accent uppercase tracking-wider">Book Appointment</span>
         <h2 class="text-3xl font-display font-black text-brand-primary">REQUEST AN ESTIMATE</h2>
         <p class="text-xs font-sans text-slate-500 max-w-md mx-auto uppercase">
-          Submit details below and our service manager will review your request in under 15 minutes.
+          Submit the details below and we'll get back to you about your free estimate.
         </p>
       </div>
 
@@ -602,7 +414,8 @@
             class="space-y-6 font-sans text-xs">
         
         <!-- Error notification -->
-        <div *ngIf="bookingStatus() === 'error'" 
+        <div *ngIf="bookingStatus() === 'error'"
+             role="alert"
              class="p-4 border border-brand-primary bg-slate-50 text-brand-primary font-bold uppercase animate-fade-in rounded-lg">
           Please fill out all required fields marked with an asterisk (*).
         </div>
@@ -617,7 +430,7 @@
                    [(ngModel)]="bookingForm.name"
                    required
                    placeholder="e.g. Jane Miller" 
-                   class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold" />
+                   class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold" />
           </div>
 
           <!-- Phone -->
@@ -629,7 +442,7 @@
                    [(ngModel)]="bookingForm.phone"
                    required
                    placeholder="e.g. (781) 269-0150" 
-                   class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold" />
+                   class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold" />
           </div>
         </div>
 
@@ -642,7 +455,7 @@
                    name="email"
                    [(ngModel)]="bookingForm.email"
                    placeholder="e.g. client@email.com" 
-                   class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold" />
+                   class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold" />
           </div>
 
           <!-- Service Category -->
@@ -697,7 +510,7 @@
                     [(ngModel)]="bookingForm.notes"
                     rows="4" 
                     placeholder="Describe pipe, boiler or gas symptoms..." 
-                    class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold resize-none"></textarea>
+                    class="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-neutral-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all duration-200 font-bold resize-none"></textarea>
         </div>
 
         <button type="submit" 
@@ -707,7 +520,8 @@
       </form>
 
       <!-- Loading state -->
-      <div *ngIf="bookingStatus() === 'loading'" 
+      <div *ngIf="bookingStatus() === 'loading'"
+           role="status" aria-live="polite" aria-busy="true"
            class="py-16 text-center space-y-4 animate-fade-in font-sans text-xs font-bold">
         <div class="inline-block relative h-10 w-10">
           <span class="absolute inset-0 border-4 border-brand-primary/20 rounded-full" aria-hidden="true"></span>
@@ -717,17 +531,18 @@
       </div>
 
       <!-- Success state -->
-      <div *ngIf="bookingStatus() === 'success'" 
+      <div *ngIf="bookingStatus() === 'success'"
+           role="status" aria-live="polite"
            class="py-12 text-center space-y-6 animate-fade-in font-sans text-xs font-bold uppercase">
         <div class="h-16 w-16 bg-emerald-50 border-2 border-emerald-500 rounded-full flex items-center justify-center text-emerald-600 mx-auto">
-          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
           </svg>
         </div>
         <div class="space-y-2">
           <h3 class="text-2xl font-display font-black text-brand-primary">Request Submitted Successfully</h3>
           <p class="text-slate-500 max-w-sm mx-auto normal-case font-normal">
-            Your estimate request has been logged. Our service manager will contact you within 15 minutes.
+            Your estimate request has been received. We'll be in touch soon.
           </p>
         </div>
         <button (click)="resetBookingStatus()" 
@@ -747,29 +562,29 @@
     <div class="md:col-span-5 space-y-4">
       <div class="flex items-center">
         <!-- Footer Logo (Made Larger) -->
-        <img src="logo.jpg" alt="Boran Plumbing Logo" class="h-18 w-auto object-contain bg-white p-2 rounded-xl border-2 border-brand-primary shadow-md" />
+        <img src="logo.jpg" alt="Boran Plumbing Logo" width="1024" height="768" loading="lazy" decoding="async" class="h-18 w-auto object-contain bg-white p-2 rounded-xl border-2 border-brand-primary shadow-md" />
       </div>
       <p class="text-slate-300 max-w-xs leading-relaxed text-xs">
         Premium commercial and residential plumbing, gas, and steam boiler solutions. Licensed and fully insured in Massachusetts.
       </p>
-      <span class="block text-[10px] font-bold text-brand-accent">Free Estimates &bull; Licensed &amp; Fully Insured</span>
+      <span class="block text-[10px] font-bold text-brand-accent-light">Free Estimates &bull; Licensed &amp; Fully Insured</span>
     </div>
 
     <!-- Quick Links Column -->
     <div class="md:col-span-3 space-y-4">
-      <h4 class="text-xs font-bold text-white font-mono uppercase tracking-wider">Navigation</h4>
+      <h4 class="text-xs font-bold text-white font-sans uppercase tracking-wider">Navigation</h4>
       <ul class="space-y-2 text-[12px] font-semibold">
+        <li><a href="#about" class="hover:text-brand-accent transition-colors">About</a></li>
         <li><a href="#services" class="hover:text-brand-accent transition-colors">Services</a></li>
-        <li><a href="#process" class="hover:text-brand-accent transition-colors">Our Process</a></li>
-        <li><a href="#coverage" class="hover:text-brand-accent transition-colors">Why Us & Coverage</a></li>
+        <li><a href="#coverage" class="hover:text-brand-accent transition-colors">Why Us</a></li>
       </ul>
     </div>
 
     <!-- Contact Info Column -->
     <div class="md:col-span-4 space-y-4">
-      <h4 class="text-xs font-bold text-white font-mono uppercase tracking-wider">Contact Info</h4>
+      <h4 class="text-xs font-bold text-white font-sans uppercase tracking-wider">Contact Info</h4>
       <div class="space-y-2 text-[12px] font-semibold">
-        <a href="tel:7812690150" class="block text-base text-brand-accent hover:underline transition-colors font-bold font-mono">
+        <a href="tel:7812690150" class="block text-base text-brand-accent-light hover:underline transition-colors font-bold">
           (781) 269-0150
         </a>
         <p class="text-slate-300 leading-normal">
@@ -783,8 +598,8 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/10 text-center flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono font-bold">
     <span>&copy; 2026 BORAN PLUMBING HEATING & GAS. ALL RIGHTS RESERVED.</span>
     <div class="flex gap-6">
-      <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-      <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+      <a href="#" class="inline-block py-2 hover:text-white transition-colors">Privacy Policy</a>
+      <a href="#" class="inline-block py-2 hover:text-white transition-colors">Terms of Service</a>
     </div>
   </div>
 </footer>

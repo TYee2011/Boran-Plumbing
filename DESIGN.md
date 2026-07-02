@@ -82,6 +82,8 @@ Typography matches the geometric, condensed sans-serif block style of "HEATING &
 *   **Do** use high-contrast text on all buttons (white text on Navy or Sky Blue).
 
 ### Don't:
-*   **Don't** introduce foreign highlight colors (no red, green, or purple accents).
+*   **Don't** introduce foreign highlight colors (no red or purple accents) as brand/decorative elements.
+    *   *One deliberate exception:* a single semantic **success green** (emerald) is permitted for form-confirmation states only, always paired with an icon + text so meaning never relies on color alone. Do not use green decoratively (status dots, badges, dividers) — those use the aqueous `brand-accent` instead.
+*   **Don't** use the base `brand-accent` (#0ea5e9) for body/small text on light backgrounds — it fails WCAG AA (2.8:1). Use `brand-accent-text` (#0369a1) on light surfaces and `brand-accent-light` (#7dd3fc) for accent text on navy. Reserve `brand-accent` for fills, icons, and large display text.
 *   **Don't** use sharp, zero-radius corners which clash with the logo's curved pipe outlines.
 *   **Don't** mix the primary corporate blue with generic royal blues.

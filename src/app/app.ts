@@ -39,32 +39,6 @@ export class App {
   // Booking Form Status
   protected readonly bookingStatus = signal<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  // Zip Code Checker Fields
-  protected zipCodeInput = '';
-  protected readonly zipCheckResult = signal<{
-    checked: boolean;
-    isSupported: boolean;
-    message: string;
-  }>({ checked: false, isSupported: false, message: '' });
-
-  // Mock list of covered zip codes (Middlesex, Worcester, and Norfolk Counties)
-  private readonly supportedZipCodes = new Set([
-    '01747', // Hopedale
-    '01757', // Milford
-    '01756', // Mendon
-    '01568', // Upton
-    '02038', // Franklin
-    '02019', // Bellingham
-    '02053', // Medway
-    '02054', // Millis
-    '01519', // Grafton
-    '01545', // Shrewsbury
-    '01601', '01602', '01603', '01604', '01605', '01606', // Worcester
-    '01701', '01702', // Framingham
-    '01760', // Natick
-    '01752'  // Marlborough
-  ]);
-
   // Core Services
   protected readonly services: ServiceItem[] = [
     {
@@ -115,34 +89,6 @@ export class App {
   // Hide the emergency alert banner
   protected dismissEmergencyBanner(): void {
     this.isEmergencyBannerVisible.set(false);
-  }
-
-  // Handle service area zip code validation
-  protected checkZipCode(): void {
-    const rawZip = this.zipCodeInput.trim();
-    if (!rawZip) {
-      this.zipCheckResult.set({
-        checked: true,
-        isSupported: false,
-        message: 'Please enter a valid zip code.'
-      });
-      return;
-    }
-
-    const isSupported = this.supportedZipCodes.has(rawZip);
-    if (isSupported) {
-      this.zipCheckResult.set({
-        checked: true,
-        isSupported: true,
-        message: 'Great news! We serve your area. Click below to book your appointment.'
-      });
-    } else {
-      this.zipCheckResult.set({
-        checked: true,
-        isSupported: false,
-        message: 'We currently do not cover this zip code, but call us at (781) 269-0150 for special requests.'
-      });
-    }
   }
 
   // Select service category from services section to pre-fill form

@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Lexend:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   /* Colors matched directly to the corporate logo */
   --color-brand-primary: #124773;      /* Boran Navy Blue */
-  --color-brand-accent: #0ea5e9;       /* Water Droplet Blue */
+  --color-brand-accent: #0ea5e9;       /* Water Droplet Blue (fills, icons, large display) */
   --color-brand-accent-hover: #38bdf8;
+  --color-brand-accent-text: #0369a1;  /* Darker aqueous blue for accent TEXT on light bg (WCAG AA 5.8:1) */
+  --color-brand-accent-light: #7dd3fc; /* Lighter aqueous blue for accent text ON navy (AA 5.7:1) */
   
   --color-substrate-light: #f8fafc;    /* Clean off-white */
   --color-substrate-card: #ffffff;     /* Pure white */
@@ -58,31 +59,10 @@ h2, h3, h4, h5, h6 {
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-brand-primary);
-  border-radius: 4px;
+  border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-brand-accent);
-}
-
-/* Warning stripe background pattern - Logo-matched blue & accent */
-.warning-stripes {
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--color-brand-primary),
-    var(--color-brand-primary) 10px,
-    #0c3354 10px,
-    #0c3354 20px
-  );
-}
-
-.warning-stripes-accent {
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--color-brand-accent),
-    var(--color-brand-accent) 10px,
-    var(--color-brand-primary) 10px,
-    var(--color-brand-primary) 20px
-  );
 }
 
 .tech-label {
